@@ -39,30 +39,7 @@ namespace szamrend_valt
                     if (szam == hatvany)
                     {
                         int helyiertek = szam / hatvany;
-                        switch (helyiertek)
-                        {
-                            case 10:
-                                megold += "A";
-                                break;
-                            case 11:
-                                megold += "B";
-                                break;
-                            case 12:
-                                megold += "C";
-                                break;
-                            case 13:
-                                megold += "D";
-                                break;
-                            case 14:
-                                megold += "E";
-                                break;
-                            case 15:
-                                megold += "F";
-                                break;
-                            default:
-                                megold += helyiertek;
-                                break;
-                        }
+                        megold += AddCharacterToResult(helyiertek);
                         szam = szam % hatvany;
                         hatvany = hatvany / szamrend;
                     }
@@ -70,30 +47,7 @@ namespace szamrend_valt
                     while (hatvany >= 1)
                     {
                         int helyiertek = szam / hatvany;
-                        switch (helyiertek)
-                        {
-                            case 10:
-                                megold += "A";
-                                break;
-                            case 11:
-                                megold += "B";
-                                break;
-                            case 12:
-                                megold += "C";
-                                break;
-                            case 13:
-                                megold += "D";
-                                break;
-                            case 14:
-                                megold += "E";
-                                break;
-                            case 15:
-                                megold += "F";
-                                break;
-                            default:
-                                megold += helyiertek;
-                                break;
-                        }
+                        megold += AddCharacterToResult(helyiertek);
                         szam = szam % hatvany;
                         hatvany = hatvany / szamrend;
                     }
@@ -104,8 +58,26 @@ namespace szamrend_valt
                     Console.WriteLine("Nem jó adatot adott.");
                 }
             }
-
-
+        }
+        private static string AddCharacterToResult(int helyiertek)
+        {
+            switch (helyiertek)
+            {
+                case 10:
+                    return "A";
+                case 11:
+                    return "B";
+                case 12:
+                    return "C";
+                case 13:
+                    return "D";
+                case 14:
+                    return "E";
+                case 15:
+                    return "F";
+                default:
+                    return Convert.ToString(helyiertek);
+            }
         }
     }
 }
