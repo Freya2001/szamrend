@@ -17,64 +17,93 @@ namespace szamrend_valt
                 bool tizeses = int.TryParse(tizes, out szam);
                 if (tizeses)
                 {
-                    Console.WriteLine("Melyik számrendszerbe váltson át (16-os a max)?");
-                    string szamr = Console.ReadLine();
                     int szamrend;
-                    bool bonyi = int.TryParse(szamr, out szamrend);
-                    if (bonyi)
+                    bool joSzamrend;
+                    do
                     {
-                        if (szamrend <= 10)
+                        Console.WriteLine("Adj meg egy számrendszert 2 és 16 között, amelyikbe átváltsuk a megadott számot!");
+                        string szamr = Console.ReadLine();
+                        bool bonyi = int.TryParse(szamr, out szamrend);
+                        joSzamrend = bonyi && szamrend > 1 && szamrend < 17;
+                    } while (!joSzamrend);
+                    if (joSzamrend)
+                    {
+                        if (szamrend == 10)
                         {
-                            string megold = "";
-                            int hatvany = 1;
-                            while (hatvany < szam)
-                            {
-                                hatvany *= szamrend;
-                            }
-                            if (szam == hatvany)
-                            {
-                                megold = megold + (szam / hatvany);
-                                szam = szam % hatvany;
-                                hatvany = hatvany / szamrend;
-                            }
-                            hatvany = hatvany / szamrend;
-                            while (hatvany > 1)
-                            {
-                                megold = megold + (szam / hatvany);
-                                szam = szam % hatvany;
-                                hatvany = hatvany / szamrend;
-
-                            }
-                            Console.WriteLine("A megoldás a(z) " + szamrend + "-s számrendszerben " + megold + ".");
+                            Console.WriteLine("A megoldás a(z) " + szamrend + "-s számrendszerben " + szam + ".");
                         }
-                        if (11 <= szamrend && szamrend <= 16)
+                        string megold = "";
+                        int hatvany = 1;
+                        while (hatvany < szam)
                         {
-                            string megold = "";
-                            int hatvany = 1;
-                            while (hatvany < szam)
-                            {
-                                hatvany *= szamrend;
-                            }
-                            if (szam == hatvany)
-                            {
-                                megold = megold + (szam / hatvany);
-                                szam = szam % hatvany;
-                                hatvany = hatvany / szamrend;
-                            }
-                            hatvany = hatvany / szamrend;
-                            while (hatvany > 1)
-                            {
-                                megold = megold + (szam / hatvany);
-                                szam = szam % hatvany;
-                                hatvany = hatvany / szamrend;
-
-                            }
-                            Console.WriteLine("A megoldás a(z) " + szamrend + "-s számrendszerben " + megold + ".");
+                            hatvany *= szamrend;
                         }
+                        if (szam == hatvany)
+                        {
+                            int helyiertek = szam / hatvany;
+                            switch (helyiertek)
+                            {
+                                case 10:
+                                    megold += "A";
+                                    break;
+                                case 11:
+                                    megold += "B";
+                                    break;
+                                case 12:
+                                    megold += "C";
+                                    break;
+                                case 13:
+                                    megold += "D";
+                                    break;
+                                case 14:
+                                    megold += "E";
+                                    break;
+                                case 15:
+                                    megold += "F";
+                                    break;
+                                default:
+                                    megold += helyiertek;
+                                    break;
+                            }
+                            szam = szam % hatvany;
+                            hatvany = hatvany / szamrend;
+                        }
+                        hatvany = hatvany / szamrend;
+                        while (hatvany >= 1)
+                        {
+                            int helyiertek = szam / hatvany;
+                            switch (helyiertek)
+                            {
+                                case 10:
+                                    megold += "A";
+                                    break;
+                                case 11:
+                                    megold += "B";
+                                    break;
+                                case 12:
+                                    megold += "C";
+                                    break;
+                                case 13:
+                                    megold += "D";
+                                    break;
+                                case 14:
+                                    megold += "E";
+                                    break;
+                                case 15:
+                                    megold += "F";
+                                    break;
+                                default:
+                                    megold += helyiertek;
+                                    break;
+                            }
+                            szam = szam % hatvany;
+                            hatvany = hatvany / szamrend;
+                        }
+                        Console.WriteLine("A megoldás a(z) " + szamrend + "-s számrendszerben " + megold + ".");
                     }
                     else
                     {
-                        Console.WriteLine("Nem jó adatot adott.");
+                        // nem jó számrendszert adott meg
                     }
                 }
                 else
